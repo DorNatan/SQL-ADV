@@ -88,7 +88,7 @@ WITH ts AS (SELECT yearID, teamID, SUM(salary) AS total_spend
 			FROM ts),
 
 	 rn AS (SELECT yearID, teamID, total_spend, cumulative_sum_millions,
-			ROW_NUMBER() OVER(PARTITION BY cumulative_sum_millions ORDER BY yearID) AS rnc
+			ROW_NUMBER() OVER(PARTITION BY teamID ORDER BY yearID) AS rnc
             FROM csm
             WHERE cumulative_sum_millions >= 1000)
             
