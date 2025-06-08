@@ -226,7 +226,7 @@ WHERE product_name LIKE 'Wonka Bar %';
 
 -- Alternative using substrings
 SELECT	 product_name,
-		 CASE WHEN INSTR(product_name, '-' = 0) THEN product_name
+		 CASE WHEN INSTR(product_name, '-') = 0 THEN product_name
 			  ELSE SUBSTR(product_name, INSTR(product_name, '-') + 2) END new_product_name
 FROM products;
 
@@ -256,7 +256,7 @@ SELECT p.product_name, md.factory, p.division,
 	    COALESCE(p.division, md.division) AS top_division
 FROM products AS p
 				LEFT JOIN mode_div AS md
-				ON P.factory = md.factory
+				ON p.factory = md.factory
 ORDER BY p.factory, p.division;
 
 -- Data Analysis Applications
